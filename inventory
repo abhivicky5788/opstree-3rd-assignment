@@ -1,0 +1,13 @@
+[webserver]
+web01
+web02
+web03
+web04
+
+[appserver]
+app01
+app02
+app03
+app04
+
+
