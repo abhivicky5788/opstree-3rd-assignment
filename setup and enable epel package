@@ -1,0 +1,16 @@
+---
+- hosts: webserver
+  sudo: yes
+  tasks:
+      -name: 1.check if epel is already configured.
+	   stat: path={{ epel_repofile_path }}
+	   register: epel_repofile_result
+	   - name: 2.install epel repo on Centos  
+	    yum: name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+		   stat: present
+		   when ansible_distribusation == 'Centos'
+		   tags: install 
+	   - name: 3.install epel on Redhat server
+        yum: name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm	
+		stat: present
+		 when ansible_distribusation == 'Redhat'
