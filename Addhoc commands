@@ -1,4 +1,6 @@
 # Ping all hosts **except** the 'control' host using the `--limit` option
 ansible -m ping webserver[5:15]host1.com
 # Display the uptime of all hosts using the `command` module.
-ansible -m command -a 'uptime' webservers
+ansible webserver -m command -a 'uptime' 
+# Fetch and display to STDOUT Ansible facts using the `setup` module.
+ansible webserver -m setup
