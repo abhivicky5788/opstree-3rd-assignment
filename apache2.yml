@@ -3,16 +3,12 @@
    tasks:
      - name: installl apache2 web server
        apt: pkg=apache2 state=latest update_cache=true
-      notify:
-          - start  apache2
-
-          - name: upload index.html file on host server
-            copy: src=/etc/ansible/files/index.html dest=/var/www/html/www.virtualhost1.com/ mode=0644
-
-          - name: uplode virtual.com file on host server
-            copy: src=/etc/ansible/files/virtualhost1.com dest=/etc/apache2/sites-available/
-      
+     - name: upload index.html file on host server
+        copy: src=/etc/ansible/files/index.html dest=/var/www/html/www.virtualhost1.com/ mode=0644
+     - name: uplode virtual.com file on host server
+       copy: src=/etc/ansible/files/virtualhost1.com dest=/etc/apache2/sites-available/
+       notify: restart  apache2
 
    handlers:
-      - name: start apache2
-        service: name=apache2 state=started
+      - name: restart apache2
+        service: name=apache2 state=restarted
