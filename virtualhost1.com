@@ -1,4 +1,4 @@
-<VirtualHost 172.31.27.9 :88>
+<VirtualHost 13.232.143.174 :88>
     ServerAdmin admin@virtualhost1.com
     DocumentRoot /var/www/html/www.virtualhost1.com
     ServerName www.virtualhost1.com
