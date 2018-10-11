@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+     - name: "add user on remote server"
+       user:
+         name: abhivicky57
+         comment: "Abhishek Kushwaha"
+         shell: /bin/bash
+     - name: placing ssh key to authorized key
+       authorized_key:
+            user: "abhivicky57"
+            key: "{{ lookup('file', '/home/abhivicky57/.ssh/id_rsa.pub') }}"
+            state: present
