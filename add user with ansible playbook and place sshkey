@@ -1,13 +1,15 @@
 ---
 - hosts: all
+  vars:
+   - abhivicky29_password: '*******'
   tasks:
      - name: "add user on remote server"
        user:
-         name: abhivicky57
+         name: abhivicky29
          comment: "Abhishek Kushwaha"
          shell: /bin/bash
+         state: present
+         password:
+             - "{{ abhivicky29_password }}"
      - name: placing ssh key to authorized key
-       authorized_key:
-            user: "abhivicky57"
-            key: "{{ lookup('file', '/home/abhivicky57/.ssh/id_rsa.pub') }}"
-            state: present
+       copy: src=/root/.ssh/id_rsa.pub dest=/home/abhivicky29/.ssh/ owner=abhivicky29 group=abhivicky29 mode=0655
